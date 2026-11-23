@@ -1,0 +1,71 @@
+<div class="container">
+<div class="row">
+<%=form_with model: @employees, url:employee_index_path, method: :post do |f| %>
+
+    <div>
+    <%=f.label :name%>
+    <%=f.text_field :name%>
+
+    </div>
+
+     <div>
+    <%=f.label :email%>
+    <%=f.text_field :email%>
+    </div>
+
+     <div>
+    <%=f.label :phone%>
+    <%=f.text_field :phone%>
+    </div>
+
+     <div>
+    <%=f.label :designation%>
+    <%=f.text_field :designation%>
+    </div>
+
+    <div>
+    <%=f.label :profile_image%>
+    <%=f.file_field :profile_image%>
+    </div>
+
+    <%=f.submit "submit", class:"btn btn-primary" %>
+<% if @employee&.errors.present? %>
+  <div class="errors">
+    <h3>Please fix these errors:</h3>
+
+    <% @employee.errors.full_messages.each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+
+  </div>
+<% end %>
+
+
+
+<%end%>
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Salary</th>
+    <th>designation</th>
+    <th>profile</th>
+  </tr>
+
+  <% @employees.each do |employee| %>
+    <tr>
+      <td>
+      <%= employee.name %></td>
+      <td><%= employee.email %></td>
+      <td><%= employee.phone %></td>
+      <td><%= employee.designation %></td>
+      <td>
+<% if employee.profile_image.attached? %>
+    <%= image_tag employee.profile_image, width: 100 %>
+  <% end %>
+      </td>
+
+    </tr>
+  <% end %>
+</table></div>
+</div>
