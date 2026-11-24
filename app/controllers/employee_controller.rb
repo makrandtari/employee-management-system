@@ -1,31 +1,47 @@
 class EmployeeController < ApplicationController
+  def index
+    @employee = Employee.new
 
-    def index
-      @employees=Employee.all
+    employees = Employee.all
+
+    if params[:search].present?
+      employees = employees.where(
+        "name LIKE ? OR email LIKE ?",
+        "%#{params[:search]}%",
+        "%#{params[:search]}%"
+      )
     end
 
-    def show
-        @employee =Employee.find(params[:id])
-    end
+    @pagy, @employees = pagy(employees, items: 5)
+  end
 
-    def new
-    end
+  def show
+    @employee = Employee.find(params[:id])
+  end
 
-    def create
-        @employee= Employee.new(employee_params)
-        if @employee.save
-            redirect_to employee_index_path, notice: "Data successfully create ho gaya!"
+  def new
+  end
 
-        else
-            @employees = Employee.all
-            render :index, status: :unprocessable_entity
-        end
+  def create
+    @employee = Employee.new(employee_params)
+
+    if @employee.save
+      redirect_to employee_index_path, notice: "Data successfully create ho gaya!"
+    else
+      @pagy, @employees = pagy(Employee.all, items: 5)
+      render :index, status: :unprocessable_entity
     end
+  end
 
   private
 
   def employee_params
-params.require(:employee).permit(
-  :name, :email, :phone, :designation, :profile_image
-)  end
+    params.require(:employee).permit(
+      :name,
+      :email,
+      :phone,
+      :designation,
+      :profile_image
+    )
+  end
 end
