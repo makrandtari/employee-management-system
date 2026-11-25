@@ -1,18 +1,11 @@
 <div class="container">
-  <div class="row">
+  <div class="row mt-5">
 
-    <div class="col-md-6">
+    <div class="col-md-4 mt-5">
       <%# Changed model to @employee (singular) %>
       <%= form_with model: @employee, url: employee_index_path, method: :post do |f| %>
 
-        <% if @employee&.errors&.any? %>
-          <div class="errors">
-            <h3>Please fix these errors:</h3>
-            <% @employee.errors.full_messages.each do |message| %>
-              <p><%= message %></p>
-            <% end %>
-          </div>
-        <% end %>
+
 
         <div>
           <%= f.label :name %>
@@ -33,6 +26,17 @@
           <%= f.label :designation %>
           <%= f.text_field :designation %>
         </div>
+        <div>
+  <%= f.label :department_id, "Department" %>
+
+  <%= f.collection_select(
+    :department_id,
+    @departments,
+    :id,
+    :department_name,
+    prompt: "Select Department"
+  ) %>
+</div>
 
         <div>
           <%= f.label :profile_image %>
@@ -41,6 +45,15 @@
 
         <%= f.submit "Submit", class: "btn btn-primary" %>
       <% end %>
+
+             <% if @employee&.errors&.any? %>
+          <div class="errors">
+            <h4>Please fill in all required fields:</h4>
+            <% @employee.errors.full_messages.each do |message| %>
+              <p style="color: red;text-weight: bold;"><%= message %></p>
+            <% end %>
+          </div>
+        <% end %>
     </div>
 
     <%# 2. Search & Table Section (Moved outside of <table>) %>
@@ -49,8 +62,7 @@
         <%= form.text_field :search, value: params[:search], placeholder: "Search employees..." %>
         <%= form.submit "Search" %>
       <% end %>
-
-      <table border="3" cell-padding="2" class="table mt-3">
+       <table border="3" cell-padding="2" class="table mt-3">
         <thead>
           <tr> <%# Added missing opening <tr> %>
             <th>Name</th>
@@ -73,7 +85,13 @@
                     <%= image_tag employee.profile_image, width: 100 %>
                   <% end %>
                 </td>
-              </tr>
+                  <td>
+                  <%= link_to 'Edit', edit_employee_path(employee), class: "btn btn-warning" %>
+                  </td>
+                  <td>
+<%= button_to "Delete", employee_path(employee), method: :delete, class: "btn btn-danger" %>
+                  </td>
+                </tr>
             <% end %>
           <% else %>
             <tr>
@@ -84,7 +102,7 @@
         </tbody>
 
       </table>
- <div>
+
 <nav aria-label="Page navigation">
 <p>Total Records: <%= @pagy.count %> | Limit: <%= @pagy.items %> | Total Pages: <%= @pagy.pages %></p>
 
@@ -128,7 +146,7 @@
 <% end %>
 
 </nav>
-
+<div>
 </div>
 
 

@@ -1,12 +1,16 @@
 class Employee < ApplicationRecord
-    has_one_attached :profile_image
-  validates :name, :email, :phone, :designation, presence: true
-    validates :email, uniqueness:true
- def self.search(query)
+  belongs_to :department
+
+  has_one_attached :profile_image
+  validates :name, presence: true
+  validates :email, presence: true, uniqueness: true
+  validates :phone, presence: true
+
+  def self.search(query)
     if query.present?
       where("name LIKE ?", "%#{sanitize_sql_like(query)}%")
     else
-     puts ""
+      puts ""
     end
   end
 end

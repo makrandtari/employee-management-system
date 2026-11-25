@@ -1,0 +1,41 @@
+<div class="col-md-6">
+      <%# Changed model to @employee (singular) %>
+  <%= form_with model: @employee do |f| %>
+
+        <% if @employee&.errors&.any? %>
+          <div class="errors">
+            <h3>Please fix these errors:</h3>
+            <% @employee.errors.full_messages.each do |message| %>
+              <p><%= message %></p>
+            <% end %>
+          </div>
+        <% end %>
+
+        <div>
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+        </div>
+
+        <div>
+          <%= f.label :email %>
+          <%= f.text_field :email %>
+        </div>
+
+        <div>
+          <%= f.label :phone %>
+          <%= f.text_field :phone %>
+        </div>
+
+        <div>
+          <%= f.label :designation %>
+          <%= f.text_field :designation %>
+        </div>
+
+        <div>
+          <%= f.label :profile_image %>
+          <%= f.file_field :profile_image %>
+        </div>
+
+        <%= f.submit "update", class: "btn btn-primary" %>
+      <% end %>
+    </div>

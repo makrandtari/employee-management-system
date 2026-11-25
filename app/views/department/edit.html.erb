@@ -1,0 +1,13 @@
+<%= form_with model: @department do |f| %>
+  <div>
+    <%= f.label :department_name  %>
+    <%= f.text_field :department_name  %>
+  </div>
+
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+        <%= f.submit "update", class: "btn btn-primary" %>
+<%end%>
