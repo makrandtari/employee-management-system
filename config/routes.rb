@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root "employee#index"
+  get "employee_dashboard", to: "employee#dashboard", as: :employee_dashboard
   get "employee/index", to: "employee#index"
   post "employee/index", to: "employee#create"
   resources :employee do
@@ -7,10 +9,18 @@ Rails.application.routes.draw do
       get :search
     end
   end
+  resources :department
 
   get "department/index", to: "department#index"
   post "department/index", to: "department#create"
-  resources :department
+
+  get "login", to: "sessions#new", as: :login
+  post "login", to: "sessions#create"
+  delete "logout", to: "sessions#destroy", as: :logout
+
+  get "login", to: "sessions#new"
+  post "login", to: "sessions#create"
+
   # delete "employee/:id", to: "employee#destroy"
   # Defines the root path route ("/")
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

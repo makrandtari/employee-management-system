@@ -8,3 +8,275 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+/* Bootstrap Form Styling */
+/* Global Application Design */
+
+body {
+  background: #f4f6fa;
+  color: #263238;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+}
+
+/* Main headings */
+h1, h2, h3 {
+  font-weight: 600;
+  color: #243247;
+  margin-bottom: 20px;
+}
+/* GLOBAL CENTERED LAYOUT */
+
+.container,
+.container-fluid {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Main page content */
+main,
+body > .container,
+body > .container-fluid {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Center page headings */
+h1, h2 {
+  text-align: center;
+}
+
+/* Center forms */
+form {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Form width */
+.form-container {
+  max-width: 650px;
+  margin: 25px auto;
+}
+/* Cards */
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.06);
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background: #fff;
+  font-weight: 600;
+  padding: 16px 20px;
+  border-bottom: 1px solid #eee;
+}
+.form-control,
+.form-select {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid #d5dce5;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #263247;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #315efb;
+  box-shadow: 0 0 0 3px rgba(49, 94, 251, 0.12);
+  outline: none;
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 7px;
+  color: #344054;
+}
+
+textarea.form-control {
+  min-height: 110px;
+}
+
+input[type="file"].form-control {
+  padding: 8px;
+}
+
+.form-control::placeholder {
+  color: #98a2b3;
+}
+/* All form input fields */
+input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid #d5dce5;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #263247;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  outline: none;
+  box-sizing: border-box;
+}
+
+/* Focus effect */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #315efb;
+  box-shadow: 0 0 0 3px rgba(49, 94, 251, 0.12);
+}
+
+/* Labels */
+form label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #344054;
+}
+
+/* Form spacing */
+form {
+  margin-bottom: 20px;
+}
+
+form input,
+form select,
+form textarea {
+  margin-bottom: 14px;
+}
+
+/* Textarea */
+textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+/* File upload */
+input[type="file"] {
+  padding: 8px;
+  background: #f8fafc;
+}
+
+/* Checkbox and radio */
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto;
+  min-height: auto;
+  margin-right: 7px;
+}
+
+/* Placeholder */
+input::placeholder,
+textarea::placeholder {
+  color: #98a2b3;
+}
+
+/* Disabled fields */
+input:disabled,
+select:disabled,
+textarea:disabled {
+  background: #f1f3f5;
+  cursor: not-allowed;
+}
+
+/* AUTOMATIC BUTTON DESIGN FOR ENTIRE APP */
+
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+a.btn,
+.btn,
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 9px 18px;
+  border: 0;
+  border-radius: 8px;
+  background-color: #315efb;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+a.btn:hover,
+.btn:hover {
+  filter: brightness(0.9);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+button:disabled,
+input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Sidebar Design */
+
+.sidebar {
+  width: 250px;
+  min-width: 250px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #182235 !important;
+}
+
+.sidebar h4 {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-heading {
+  color: #94a3b8;
+  font-size: 11px;
+  font-weight: 700;
+  margin: 20px 0 10px;
+}
+
+.sidebar-link {
+  display: block;
+  color: #cbd5e1;
+  text-decoration: none;
+  padding: 12px 14px;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  transition: 0.2s;
+}
+
+.sidebar-link:hover {
+  background: #315efb;
+  color: white;
+  padding-left: 19px;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 180px;
+    min-width: 180px;
+  }
+}

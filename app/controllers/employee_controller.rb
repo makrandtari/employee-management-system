@@ -1,4 +1,13 @@
 class EmployeeController < ApplicationController
+  before_action :require_login
+  before_action :require_admin, except: [:show]
+
+  def dashboard
+    @total_employees = Employee.count
+    @total_departments = Department.count
+    @recent_employees = Employee.order(created_at: :desc).limit(5)
+  end
+
   def index
     @employee = Employee.new
     @departments = Department.all
@@ -18,6 +27,11 @@ class EmployeeController < ApplicationController
 
   def show
     @employee = Employee.find(params[:id])
+
+    unless current_user.role == "admin" ||
+           current_user.employee_id == @employee.id
+      redirect_to login_path, alert: "Access denied"
+    end
   end
 
   def new
@@ -33,9 +47,9 @@ class EmployeeController < ApplicationController
       redirect_to @employee, notice: "Successfully created!"
     else
       @departments = Department.all
+      @pagy, @employees = pagy(Employee.all, items: 5)
 
-      employees = Employee.all
-      @pagy, @employees = pagy(employees, items: 5)
+      Rails.logger.info("VALIDATION ERRORS: #{@employee.errors.full_messages}")
 
       render :index, status: :unprocessable_entity
     end

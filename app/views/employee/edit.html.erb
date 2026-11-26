@@ -1,4 +1,4 @@
-<div class="col-md-6">
+
       <%# Changed model to @employee (singular) %>
   <%= form_with model: @employee do |f| %>
 
@@ -30,6 +30,21 @@
           <%= f.label :designation %>
           <%= f.text_field :designation %>
         </div>
+
+        <div>
+  <%= f.label :department_id, "Department" %>
+
+  <%= f.collection_select(
+    :department_id,
+    @departments,
+    :id,
+    :department_name,
+    prompt: "Select Department"
+  ) %>
+</div>
+
+
+
 
         <div>
           <%= f.label :profile_image %>

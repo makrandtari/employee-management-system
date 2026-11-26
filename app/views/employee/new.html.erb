@@ -1,0 +1,53 @@
+<div class="col-md-12 mt-5">
+  <h3>Employee Form</h3>
+
+  <% if @employee.errors.any? %>
+    <div class="errors">
+      <h4>Please fix the following errors:</h4>
+      <ul>
+        <% @employee.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%= form_with model: @employee,
+    url: employee_index_path,
+    method: :post,
+    data: { turbo: false } do |f| %>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+
+    <div>
+      <%= f.label :phone %>
+      <%= f.text_field :phone %>
+    </div>
+
+    <div>
+      <%= f.label :designation %>
+      <%= f.text_field :designation %>
+    </div>
+
+    <div>
+      <%= f.label :department_id, "Department" %>
+      <%= f.collection_select :department_id, @departments,
+          :id, :department_name, prompt: "Select Department" %>
+    </div>
+
+    <div>
+      <%= f.label :profile_image %>
+      <%= f.file_field :profile_image %>
+    </div>
+
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+
+  <% end %>
+</div>

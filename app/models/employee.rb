@@ -5,7 +5,8 @@ class Employee < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :phone, presence: true
-
+  validates :designation, presence: true
+  validates :department_id, presence: true
   def self.search(query)
     if query.present?
       where("name LIKE ?", "%#{sanitize_sql_like(query)}%")

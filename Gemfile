@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-  gem 'pagy', '~> 6.2'
+gem "pagy", "~> 6.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.1.4", ">= 8.1.4.1"
@@ -64,5 +64,5 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-
 end
+gem "bcrypt"

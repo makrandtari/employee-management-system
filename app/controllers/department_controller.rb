@@ -1,4 +1,7 @@
 class DepartmentController < ApplicationController
+  before_action :require_login
+  before_action :require_admin
+
   def index
     @department = Department.new
     @departments = Department.all
